@@ -12,4 +12,3 @@ COPY --from=builder /app .
 ENV PORT=80
 EXPOSE 80
 CMD ["npx", "remix-serve", "build"]
-
