@@ -9,6 +9,8 @@ RUN npm run build
 FROM node:18-slim
 WORKDIR /app
 COPY --from=builder /app .
-EXPOSE 3000
+EXPOSE 80
+ENV PORT=80
 CMD ["npm", "run", "start"]
+
 
