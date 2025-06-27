@@ -18,7 +18,7 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
-
+// Activación automática vía GitHub Actions
 
 app.MapGet("/weatherforecast", () =>
 {
