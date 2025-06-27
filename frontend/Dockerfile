@@ -1,5 +1,5 @@
 # Etapa 1: build
-FROM node:18-alpine as builder
+FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN npm install
@@ -11,5 +11,5 @@ WORKDIR /app
 COPY --from=builder /app .
 ENV PORT=80
 EXPOSE 80
-CMD ["npm", "run", "start"]
+CMD ["npx", "remix-serve", "build"]
 
