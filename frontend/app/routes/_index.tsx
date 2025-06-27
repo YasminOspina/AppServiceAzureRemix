@@ -6,7 +6,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
-
+// Línea de prueba para activar Actions
 export default function Index() {
   return (
     <div className="flex h-screen items-center justify-center">
