@@ -24,7 +24,8 @@ jobs:
       run: |
         cd frontend
         npm install
-        npm run build
+        npx remix vite:build
+
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
