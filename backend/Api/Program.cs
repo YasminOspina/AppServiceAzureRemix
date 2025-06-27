@@ -16,8 +16,10 @@ app.UseHttpsRedirection();
 
 var summaries = new[]
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    "Freezing","Yasmin", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+// Prueba para activar GitHub Actions
+Console.WriteLine("Despliegue automático activado - test");
 
 app.MapGet("/weatherforecast", () =>
 {
