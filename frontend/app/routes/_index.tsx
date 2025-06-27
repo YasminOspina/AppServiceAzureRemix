@@ -6,7 +6,7 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
-// Activando flujo Docker automático
+// Activando flujo Docker automático, hago testeo para funcionalidad. 
 export default function Index() {
   return (
     <div className="flex h-screen items-center justify-center">
