@@ -8,6 +8,7 @@ RUN dotnet publish -c Release -o out
 # Etapa 2: runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://+:80
 COPY --from=build /app/out .
-EXPOSE 8080
+EXPOSE 80
 ENTRYPOINT ["dotnet", "Api.dll"]
