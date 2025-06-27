@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=builder /app .
 ENV PORT=80
 EXPOSE 80
-CMD ["npx", "remix-serve", "build"]
+CMD ["npx", "remix-serve", "build/server/index.js"]
