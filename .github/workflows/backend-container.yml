@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./backend/Api
           push: true
-          tags: yasminospina/remix-backend:latest
+          tags: yasminospina/remix-backend:v1
