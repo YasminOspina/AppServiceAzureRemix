@@ -27,4 +27,4 @@ jobs:
           context: ./backend/Api
           push: true
           tags: yasminospina/remix-backend:v1
-          // agregar un tag actualizado
+         
