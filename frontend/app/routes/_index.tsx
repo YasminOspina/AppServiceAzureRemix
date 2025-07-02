@@ -3,7 +3,8 @@ import { useLoaderData, Form } from "@remix-run/react";
 
 // GET personas
 export const loader: LoaderFunction = async () => {
-  const res = await fetch("http://localhost:5021/api/Persons"); // usar la URL del backend (o de Azure si estás desplegada)
+  const res = await fetch("https://remix-backend-container-sirley.azurewebsites.net/api/Persons");
+ // usar la URL del backend (o de Azure si estás desplegada)
   if (!res.ok) {
     console.error("Error al obtener datos del backend");
     return json([]);
@@ -17,7 +18,7 @@ export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
 
-  const res = await fetch("http://localhost:5021/api/Persons", {
+  const res = await fetch("https://remix-backend-container-sirley.azurewebsites.net/api/Persons", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name }),

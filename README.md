@@ -2,100 +2,106 @@
 
 # 🌐 Taller Fullstack en la Nube: Remix + .NET 9 + Azure App Service (Contenedores)
 
-Este repositorio contiene el resultado del taller de despliegue fullstack usando:
+✅ Descripción del Proyecto Fullstack desplegado en Azure
+Este proyecto implementa una aplicación fullstack compuesta por:
 
-- 🔧 Backend en **.NET 9**
-- 🎨 Frontend en **Remix con Vite**
-- ☁️ Infraestructura en **Azure App Service Linux**
-- 🐳 Contenedores Docker personalizados
-- ⚙️ Automatización con **GitHub Actions**
-- 📦 Publicación de imágenes en **Docker Hub**
+Frontend: Remix + Vite
 
----
+Backend: ASP.NET 9 con Entity Framework Core
 
-## 📁 Estructura del Proyecto
+Base de Datos: PostgreSQL Flexible Server en Azure
 
-```bash
-TallerFullstack/
-│
-├── backend/
-│   └── Api/                  # Proyecto .NET 9 con WebAPI
-│       └── Dockerfile        # Imagen personalizada para backend
-│
-├── frontend/                 # Proyecto Remix + Vite
-│   └── Dockerfile            # Imagen personalizada para frontend
-│
-└── .github/workflows/
-    ├── backend-container.yml # GitHub Actions: backend
-    └── frontend-container.yml# GitHub Actions: frontend
+Infraestructura: Azure App Service Linux usando contenedores Docker
 
+Despliegue: Automatización con GitHub Actions + Docker Hub
 
+🚀 Flujo completo implementado
+1. Configuración local
 
-🚀 Objetivos cumplidos
+- Se desarrolló y probó el backend en .NET 9 con una API REST (/api/Persons)
 
-| Requisito del Taller                      | Estado |
-| ----------------------------------------- | ------ |
-| Dockerización del frontend y backend      | ✅      |
-| Despliegue en Azure App Service Linux     | ✅      |
-| Uso de contenedores Docker personalizados | ✅      |
-| Automatización con GitHub Actions         | ✅      |
-| Publicación en Docker Hub                 | ✅      |
-| Despliegue CI/CD al hacer `git push`      | ✅      |
+- Se implementó Swagger para documentar los endpoints
 
+- Se conectó a una base de datos PostgreSQL en Azure, usando Entity Framework Core
 
-🐳 Docker Hub
-Las imágenes se publican automáticamente en:
+- Se agregó funcionalidad para listar y agregar personas
 
-Backend: yasminospina/remix-backend:latest
+2. Despliegue del backend
 
-Frontend: yasminospina/remix-frontend:latest
+- Se creó un contenedor Docker para el backend
 
+- Se publicó la imagen en Docker Hub: yasminospina/remix-backend:v1
 
-⚙️ GitHub Actions
-Cada vez que se hace git push a la rama main en los respectivos directorios (frontend/** o backend/**), se ejecutan estos workflows:
+- Se creó un App Service Linux en Azure configurado como contenedor
 
-Build de imagen Docker
+- Se estableció el puerto 80 y se activó el log de contenedor
 
-Login seguro a Docker Hub con secrets
+- Se validó que los datos fueran visibles desde el endpoint en la nube:
+👉 https://remix-backend-container-sirley.azurewebsites.net/api/Persons
 
-Push automático a Docker Hub
+3. Despliegue de la base de datos
 
-Ejemplo de configuración (frontend-container.yml):
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'frontend/**'
+- Se creó una instancia de Azure Database for PostgreSQL Flexible Server
 
+- Se configuraron las reglas de firewall para permitir acceso público
 
+- Se conectó desde EF Core y desde PgAdmin
 
-☁️ Azure App Service (Linux)
-Se crearon dos servicios App Service en Linux que consumen las imágenes directamente desde Docker Hub:
+- Se aplicaron migraciones y se creó la tabla Persons en la base de datos real en Azure
 
-Servicio	Imagen	URL pública
-Frontend Remix	yasminospina/remix-frontend:latest	https://remix-frontend-container-sirley.azurewebsites.net
-Backend .NET 9	yasminospina/remix-backend:latest	https://remix-backend-container-sirley.azurewebsites.net
+4. Conexión Frontend ↔ Backend
 
-⚠️ Azure se encarga de ejecutar la imagen como contenedor completo, sin necesidad de runtime preinstalado.
+- Se modificó el archivo frontend/app/routes/_index.tsx para:
 
-📸 Evidencia 
+- Consumir la API desplegada en Azure (/api/Persons)
 
-✅ Navegador mostrando /weatherforecast y la app Remix
-https://remix-frontend-container-sirley.azurewebsites.net/
-http://remix-backend-container-sirley.azurewebsites.net/weatherforecast
+- Mostrar personas almacenadas
+
+- Agregar nuevas personas mediante formulario
+
+5. Despliegue del frontend
+
+- Se creó un contenedor Docker con el frontend Remix
+
+- Se publicó en Docker Hub: yasminospina/remix-frontend:v2
+
+- Se configuró el App Service de Azure para usar la imagen
+
+- Se probó en producción:
+👉 https://remix-frontend-container-sirley.azurewebsites.net
+
+🧪 Funcionalidades finales en producción
+Listar personas desde base de datos real en Azure
+
+Agregar nuevas personas desde el frontend
+
+Backend en .NET conectado a PostgreSQL Azure
+
+Frontend en Remix 100% funcional, consumiendo el backend en la nube
+
+Infraestructura desplegada en contenedores Docker, sin runtimes preinstalados
+
+GitHub Actions configurado para automatizar builds y pushes a Docker Hub
 
 
-✅ Conclusión
-Este taller demostró cómo realizar un despliegue moderno, escalable y automatizado para una aplicación fullstack utilizando:
+### Vista del Frontend desplegado
 
-Docker
+![Vista del frontend](docs/img/frontend-preview.png)
 
-GitHub Actions
+### Vista del Backend desplegado
 
-Azure App Service (Linux)
+![Vista del backend](docs/img/backend-preview.png)
 
-Remix + .NET 9
+### Documentación de Swagger
 
-Con esta arquitectura, el despliegue de cambios es automático, estable y apto para producción real.
+![Swagger](docs/img/swagger-docs.png)
+
+### Conexión con PostgreSQL Azure
+
+![Creación](conexiondb-azure-postgres.png)
+
+![Base de datos](docs/img/db-azure.png)
+
+![Base de datos local](docs/img/pgadmin.png)
+
 
