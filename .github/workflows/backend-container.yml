@@ -1,4 +1,4 @@
-name: Build and Push Backend Docker Image
+name: Build and Deploy Backend to Azure
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - 'backend/**'
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +27,14 @@ jobs:
           context: ./backend/Api
           push: true
           tags: yasminospina/remix-backend:v1
+
+      - name: Deploy to Azure Web App (Docker)
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: remix-backend-container-sirley
+          publish-profile: ${{ secrets.AZURE_BACKEND_PUBLISH_PROFILE }}
+          images: yasminospina/remix-backend:v1
+
+
+      
          
