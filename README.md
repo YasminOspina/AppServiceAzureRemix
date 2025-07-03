@@ -84,6 +84,30 @@ Infraestructura desplegada en contenedores Docker, sin runtimes preinstalados
 GitHub Actions configurado para automatizar builds y pushes a Docker Hub
 
 
+## 🔁 Automatización del Despliegue con GitHub Actions (Actualizado)
+
+Para lograr un despliegue completamente automático y profesional en Azure, se configuraron dos workflows independientes en `.github/workflows/`:
+
+### Backend: `backend-deploy.yml`
+- Se ejecuta al hacer push en `main` dentro de la carpeta `backend/`
+- Compila y construye la imagen Docker personalizada del backend
+- La sube a Docker Hub como `yasminospina/remix-backend:v1`
+- Usa un secreto `AZURE_BACKEND_PUBLISH_PROFILE` (extraído desde Azure) para desplegar automáticamente a Azure App Service
+
+### Frontend: `frontend-deploy.yml`
+- Se ejecuta al hacer push en `main` dentro de la carpeta `frontend/`
+- Compila la aplicación Remix
+- Crea una imagen Docker y la sube como `yasminospina/remix-frontend:latest`
+- Usa el secreto `AZURE_FRONTEND_PUBLISH_PROFILE` para actualizar el contenedor en Azure App Service
+
+> 🛡️ Ambos perfiles de publicación (`.PublishSettings`) fueron cargados como secretos en GitHub para permitir el despliegue sin necesidad de credenciales de Azure AD.
+
+---
+
+Con este flujo, cada cambio realizado en el código del backend o frontend se refleja automáticamente en producción sin intervención manual.
+
+
+
 ### Vista del Frontend desplegado
 
 ![Vista del frontend](docs/img/frontend-preview.png)
@@ -98,7 +122,7 @@ GitHub Actions configurado para automatizar builds y pushes a Docker Hub
 
 ### Conexión con PostgreSQL Azure
 
-![Creación](conexiondb-azure-postgres.png)
+![Creacion](conexiondb-azure-postgres.png)
 
 ![Base de datos](docs/img/db-azure.png)
 
